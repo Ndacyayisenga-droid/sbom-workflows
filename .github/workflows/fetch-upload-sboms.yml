@@ -42,7 +42,7 @@ jobs:
       - name: Fetch versions and download/upload SBOMs
         env:
           DEPENDENCYTRACK_API_KEY: ${{ secrets.DEPENDENCYTRACK_API_KEY }}
-          DEPENDENCYTRACK_API_URL: https://https://apiserver-qm4fnreugqjo537lcm8zxrso.playground.open-elements.cloud/api/v1/bom
+          DEPENDENCYTRACK_API_URL: https://apiserver-qm4fnreugqjo537lcm8zxrso.playground.open-elements.cloud/api/v1/bom
         run: |
           name="${{ matrix.project.name }}"
           groupId="${{ matrix.project.groupId }}"
