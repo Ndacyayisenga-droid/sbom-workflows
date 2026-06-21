@@ -1,0 +1,506 @@
+[
+  {
+    "name": "maven-dependency-plugin",
+    "url": "https://github.com/apache/maven-dependency-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-dependency-plugin"
+  },
+  {
+    "name": "maven-build-cache-extension",
+    "url": "https://github.com/apache/maven-build-cache-extension.git",
+    "groupId": "org.apache.maven.extensions",
+    "artifactId": "maven-build-cache-extension"
+  },
+  {
+    "name": "maven-jlink-plugin",
+    "url": "https://github.com/apache/maven-jlink-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jlink-plugin"
+  },
+  {
+    "name": "maven-verifier-plugin",
+    "url": "https://github.com/apache/maven-verifier-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-verifier-plugin"
+  },
+  {
+    "name": "maven",
+    "url": "https://github.com/apache/maven.git",
+    "groupId": "org.apache.maven",
+    "artifactId": "maven"
+  },
+  {
+    "name": "maven-mvnd",
+    "url": "https://github.com/apache/maven-mvnd.git",
+    "groupId": "org.apache.maven.daemon",
+    "artifactId": "maven-mvnd"
+  },
+  {
+    "name": "maven-resolver",
+    "url": "https://github.com/apache/maven-resolver.git",
+    "groupId": "org.apache.maven.resolver",
+    "artifactId": "maven-resolver"
+  },
+  {
+    "name": "maven-resolver-ant-tasks",
+    "url": "https://github.com/apache/maven-resolver-ant-tasks.git",
+    "groupId": "org.apache.maven.resolver",
+    "artifactId": "maven-resolver-ant-tasks"
+  },
+  {
+    "name": "maven-wrapper",
+    "url": "https://github.com/apache/maven-wrapper.git",
+    "groupId": "org.apache.maven.wrapper",
+    "artifactId": "maven-wrapper"
+  },
+  {
+    "name": "maven-archetype",
+    "url": "https://github.com/apache/maven-archetype.git",
+    "groupId": "org.apache.maven.archetype",
+    "artifactId": "maven-archetype"
+  },
+  {
+    "name": "maven-archetypes",
+    "url": "https://github.com/apache/maven-archetypes.git",
+    "groupId": "org.apache.maven.archetypes",
+    "artifactId": "maven-archetypes"
+  },
+  {
+    "name": "maven-dist-tool",
+    "url": "https://github.com/apache/maven-dist-tool.git",
+    "groupId": "org.apache.maven.tools",
+    "artifactId": "maven-dist-tool"
+  },
+  {
+    "name": "maven-enforcer",
+    "url": "https://github.com/apache/maven-enforcer.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-enforcer-plugin"
+  },
+  {
+    "name": "maven-jxr",
+    "url": "https://github.com/apache/maven-jxr.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jxr-plugin"
+  },
+  {
+    "name": "maven-indexer",
+    "url": "https://github.com/apache/maven-indexer.git",
+    "groupId": "org.apache.maven.indexer",
+    "artifactId": "maven-indexer"
+  },
+  {
+    "name": "maven-plugin-testing",
+    "url": "https://github.com/apache/maven-plugin-testing.git",
+    "groupId": "org.apache.maven.plugin-testing",
+    "artifactId": "maven-plugin-testing"
+  },
+  {
+    "name": "maven-plugin-tools",
+    "url": "https://github.com/apache/maven-plugin-tools.git",
+    "groupId": "org.apache.maven.plugin-tools",
+    "artifactId": "maven-plugin-tools"
+  },
+  {
+    "name": "maven-release",
+    "url": "https://github.com/apache/maven-release.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-release-plugin"
+  },
+  {
+    "name": "maven-scm",
+    "url": "https://github.com/apache/maven-scm.git",
+    "groupId": "org.apache.maven.scm",
+    "artifactId": "maven-scm"
+  },
+  {
+    "name": "maven-surefire",
+    "url": "https://github.com/apache/maven-surefire.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-surefire-plugin"
+  },
+  {
+    "name": "maven-wagon",
+    "url": "https://github.com/apache/maven-wagon.git",
+    "groupId": "org.apache.maven.wagon",
+    "artifactId": "maven-wagon"
+  },
+  {
+    "name": "maven-acr-plugin",
+    "url": "https://github.com/apache/maven-acr-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-acr-plugin"
+  },
+  {
+    "name": "maven-antrun-plugin",
+    "url": "https://github.com/apache/maven-antrun-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-antrun-plugin"
+  },
+  {
+    "name": "maven-artifact-plugin",
+    "url": "https://github.com/apache/maven-artifact-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-artifact-plugin"
+  },
+  {
+    "name": "maven-assembly-plugin",
+    "url": "https://github.com/apache/maven-assembly-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-assembly-plugin"
+  },
+  {
+    "name": "maven-changelog-plugin",
+    "url": "https://github.com/apache/maven-changelog-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-changelog-plugin"
+  },
+  {
+    "name": "maven-changes-plugin",
+    "url": "https://github.com/apache/maven-changes-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-changes-plugin"
+  },
+  {
+    "name": "maven-checkstyle-plugin",
+    "url": "https://github.com/apache/maven-checkstyle-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-checkstyle-plugin"
+  },
+  {
+    "name": "maven-clean-plugin",
+    "url": "https://github.com/apache/maven-clean-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-clean-plugin"
+  },
+  {
+    "name": "maven-compiler-plugin",
+    "url": "https://github.com/apache/maven-compiler-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-compiler-plugin"
+  },
+  {
+    "name": "maven-deploy-plugin",
+    "url": "https://github.com/apache/maven-deploy-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-deploy-plugin"
+  },
+  {
+    "name": "maven-doap-plugin",
+    "url": "https://github.com/apache/maven-doap-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-doap-plugin"
+  },
+  {
+    "name": "maven-ear-plugin",
+    "url": "https://github.com/apache/maven-ear-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-ear-plugin"
+  },
+  {
+    "name": "maven-ejb-plugin",
+    "url": "https://github.com/apache/maven-ejb-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-ejb-plugin"
+  },
+  {
+    "name": "maven-gpg-plugin",
+    "url": "https://github.com/apache/maven-gpg-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-gpg-plugin"
+  },
+  {
+    "name": "maven-help-plugin",
+    "url": "https://github.com/apache/maven-help-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-help-plugin"
+  },
+  {
+    "name": "maven-install-plugin",
+    "url": "https://github.com/apache/maven-install-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-install-plugin"
+  },
+  {
+    "name": "maven-invoker-plugin",
+    "url": "https://github.com/apache/maven-invoker-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-invoker-plugin"
+  },
+  {
+    "name": "maven-jar-plugin",
+    "url": "https://github.com/apache/maven-jar-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jar-plugin"
+  },
+  {
+    "name": "maven-jarsigner-plugin",
+    "url": "https://github.com/apache/maven-jarsigner-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jarsigner-plugin"
+  },
+  {
+    "name": "maven-javadoc-plugin",
+    "url": "https://github.com/apache/maven-javadoc-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-javadoc-plugin"
+  },
+  {
+    "name": "maven-jdeprscan-plugin",
+    "url": "https://github.com/apache/maven-jdeprscan-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jdeprscan-plugin"
+  },
+  {
+    "name": "maven-jdeps-plugin",
+    "url": "https://github.com/apache/maven-jdeps-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jdeps-plugin"
+  },
+  {
+    "name": "maven-jmod-plugin",
+    "url": "https://github.com/apache/maven-jmod-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-jmod-plugin"
+  },
+  {
+    "name": "maven-linkcheck-plugin",
+    "url": "https://github.com/apache/maven-linkcheck-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-linkcheck-plugin"
+  },
+  {
+    "name": "maven-pmd-plugin",
+    "url": "https://github.com/apache/maven-pmd-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-pmd-plugin"
+  },
+  {
+    "name": "maven-project-info-reports-plugin",
+    "url": "https://github.com/apache/maven-project-info-reports-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-project-info-reports-plugin"
+  },
+  {
+    "name": "maven-rar-plugin",
+    "url": "https://github.com/apache/maven-rar-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-rar-plugin"
+  },
+  {
+    "name": "maven-remote-resources-plugin",
+    "url": "https://github.com/apache/maven-remote-resources-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-remote-resources-plugin"
+  },
+  {
+    "name": "maven-resources-plugin",
+    "url": "https://github.com/apache/maven-resources-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-resources-plugin"
+  },
+  {
+    "name": "maven-scm-publish-plugin",
+    "url": "https://github.com/apache/maven-scm-publish-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-scm-publish-plugin"
+  },
+  {
+    "name": "maven-scripting-plugin",
+    "url": "https://github.com/apache/maven-scripting-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-scripting-plugin"
+  },
+  {
+    "name": "maven-shade-plugin",
+    "url": "https://github.com/apache/maven-shade-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-shade-plugin"
+  },
+  {
+    "name": "maven-site-plugin",
+    "url": "https://github.com/apache/maven-site-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-site-plugin"
+  },
+  {
+    "name": "maven-source-plugin",
+    "url": "https://github.com/apache/maven-source-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-source-plugin"
+  },
+  {
+    "name": "maven-stage-plugin",
+    "url": "https://github.com/apache/maven-stage-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-stage-plugin"
+  },
+  {
+    "name": "maven-toolchains-plugin",
+    "url": "https://github.com/apache/maven-toolchains-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-toolchains-plugin"
+  },
+  {
+    "name": "maven-war-plugin",
+    "url": "https://github.com/apache/maven-war-plugin.git",
+    "groupId": "org.apache.maven.plugins",
+    "artifactId": "maven-war-plugin"
+  },
+  {
+    "name": "maven-apache-parent",
+    "url": "https://github.com/apache/maven-apache-parent.git",
+    "groupId": "org.apache",
+    "artifactId": "maven-apache-parent"
+  },
+  {
+    "name": "maven-parent",
+    "url": "https://github.com/apache/maven-parent.git",
+    "groupId": "org.apache.maven",
+    "artifactId": "maven-parent"
+  },
+  {
+    "name": "maven-apache-resources",
+    "url": "https://github.com/apache/maven-apache-resources.git",
+    "groupId": "org.apache.maven",
+    "artifactId": "maven-apache-resources"
+  },
+  {
+    "name": "maven-archiver",
+    "url": "https://github.com/apache/maven-archiver.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-archiver"
+  },
+  {
+    "name": "maven-artifact-resolver",
+    "url": "https://github.com/apache/maven-artifact-resolver.git",
+    "groupId": "org.apache.maven.resolver",
+    "artifactId": "maven-artifact-resolver"
+  },
+  {
+    "name": "maven-artifact-transfer",
+    "url": "https://github.com/apache/maven-artifact-transfer.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-artifact-transfer"
+  },
+  {
+    "name": "maven-common-artifact-filters",
+    "url": "https://github.com/apache/maven-common-artifact-filters.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-common-artifact-filters"
+  },
+  {
+    "name": "maven-dependency-analyzer",
+    "url": "https://github.com/apache/maven-dependency-analyzer.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-dependency-analyzer"
+  },
+  {
+    "name": "maven-dependency-tree",
+    "url": "https://github.com/apache/maven-dependency-tree.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-dependency-tree"
+  },
+  {
+    "name": "maven-filtering",
+    "url": "https://github.com/apache/maven-filtering.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-filtering"
+  },
+  {
+    "name": "maven-invoker",
+    "url": "https://github.com/apache/maven-invoker.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-invoker"
+  },
+  {
+    "name": "maven-jarsigner",
+    "url": "https://github.com/apache/maven-jarsigner.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-jarsigner"
+  },
+  {
+    "name": "maven-mapping",
+    "url": "https://github.com/apache/maven-mapping.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-mapping"
+  },
+  {
+    "name": "maven-project-utils",
+    "url": "https://github.com/apache/maven-project-utils.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-project-utils"
+  },
+  {
+    "name": "maven-reporting-api",
+    "url": "https://github.com/apache/maven-reporting-api.git",
+    "groupId": "org.apache.maven.reporting",
+    "artifactId": "maven-reporting-api"
+  },
+  {
+    "name": "maven-reporting-exec",
+    "url": "https://github.com/apache/maven-reporting-exec.git",
+    "groupId": "org.apache.maven.reporting",
+    "artifactId": "maven-reporting-exec"
+  },
+  {
+    "name": "maven-reporting-impl",
+    "url": "https://github.com/apache/maven-reporting-impl.git",
+    "groupId": "org.apache.maven.reporting",
+    "artifactId": "maven-reporting-impl"
+  },
+  {
+    "name": "maven-script-interpreter",
+    "url": "https://github.com/apache/maven-script-interpreter.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-script-interpreter"
+  },
+  {
+    "name": "maven-shared-incremental",
+    "url": "https://github.com/apache/maven-shared-incremental.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-shared-incremental"
+  },
+  {
+    "name": "maven-shared-io",
+    "url": "https://github.com/apache/maven-shared-io.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-shared-io"
+  },
+  {
+    "name": "maven-shared-jar",
+    "url": "https://github.com/apache/maven-shared-jar.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-shared-jar"
+  },
+  {
+    "name": "maven-shared-resources",
+    "url": "https://github.com/apache/maven-shared-resources.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-shared-resources"
+  },
+  {
+    "name": "maven-shared-utils",
+    "url": "https://github.com/apache/maven-shared-utils.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-shared-utils"
+  },
+  {
+    "name": "maven-verifier",
+    "url": "https://github.com/apache/maven-verifier.git",
+    "groupId": "org.apache.maven.shared",
+    "artifactId": "maven-verifier"
+  },
+  {
+    "name": "maven-default-skin",
+    "url": "https://github.com/apache/maven-default-skin.git",
+    "groupId": "org.apache.maven.skins",
+    "artifactId": "maven-default-skin"
+  },
+  {
+    "name": "maven-fluido-skin",
+    "url": "https://github.com/apache/maven-fluido-skin.git",
+    "groupId": "org.apache.maven.skins",
+    "artifactId": "maven-fluido-skin"
+  }
+]

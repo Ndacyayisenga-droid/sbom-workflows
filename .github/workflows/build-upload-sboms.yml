@@ -1,0 +1,57 @@
+name: Deploy SBOMs to DependencyTrack
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sunday at 00:00 UTC
+
+jobs:
+  read-repos:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Read repos.json and convert to matrix
+        id: set-matrix
+        run: |
+          JSON=$(cat repos.json | jq -c)
+          echo "matrix=$JSON" >> $GITHUB_OUTPUT
+
+  build-and-upload-sboms:
+    needs: read-repos
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include: ${{ fromJson(needs.read-repos.outputs.matrix) }}
+
+    steps:
+      - name: Clone repo ${{ matrix.name }}
+        run: git clone ${{ matrix.url }} ${{ matrix.name }}
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Generate SBOM using CycloneDX
+        working-directory: ./${{ matrix.name }}
+        run: mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom
+
+      - name: Upload SBOM to DependencyTrack
+        uses: DependencyTrack/gh-upload-sbom@v3
+        with:
+          serverHostname: 'api.dependencytrack.open-elements.cloud'
+          apiKey: ${{ secrets.DEPENDENCYTRACK_API_KEY }}
+          projectName: ${{ matrix.name }}
+          projectVersion: 'SNAPSHOT'
+          bomFilename: "${{ matrix.name }}/target/bom.xml"
+          autoCreate: true

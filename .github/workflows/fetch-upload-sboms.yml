@@ -1,0 +1,165 @@
+name: Fetch and Deploy SBOMs to DependencyTrack
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 0 1,15 * *' # Run on the 1st and 15th of every month at 00:00 UTC
+  workflow_dispatch:
+
+jobs:
+  read-repos:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.set-matrix.outputs.projects }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read repos.json and split to project list
+        id: set-matrix
+        run: |
+          JSON=$(cat repos.json | jq -c '[.[] | {name, groupId, artifactId}]')
+          echo "projects=$JSON" >> $GITHUB_OUTPUT
+
+  fetch-and-upload-sboms:
+    needs: read-repos
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.read-repos.outputs.projects) }}
+      fail-fast: false
+      max-parallel: 10
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq gnupg
+
+      - name: Prepare SBOM directory
+        run: mkdir -p sboms
+
+      - name: Fetch versions and download/upload SBOMs
+        env:
+          DEPENDENCYTRACK_API_KEY: ${{ secrets.DEPENDENCYTRACK_API_KEY }}
+          DEPENDENCYTRACK_API_URL: https://api.dependencytrack.open-elements.cloud/api/v1/bom
+        run: |
+          name="${{ matrix.project.name }}"
+          groupId="${{ matrix.project.groupId }}"
+          artifactId="${{ matrix.project.artifactId }}"
+
+          groupPath=$(echo "$groupId" | tr '.' '/')
+          url="https://repo1.maven.org/maven2/$groupPath/$artifactId/maven-metadata.xml"
+
+          echo "Fetching versions for $artifactId"
+          versions=$(curl -s -f "$url" | grep '<version>' | sed -E 's/.*<version>([^<]+)<\/version>.*/\1/' | \
+            grep -v SNAPSHOT || echo "")
+
+          if [ -z "$versions" ]; then
+            echo "No versions found for $artifactId"
+            exit 0
+          fi
+
+          for version in $versions; do
+            echo "Processing $artifactId:$version"
+            JSON_SBOM_URL="https://repo1.maven.org/maven2/$groupPath/$artifactId/$version/$artifactId-$version-cyclonedx.json"
+            JSON_SBOM_FILE="sboms/$artifactId-$version-cyclonedx.json"
+            SHA1_URL="https://repo1.maven.org/maven2/$groupPath/$artifactId/$version/$artifactId-$version-cyclonedx.json.sha1"
+            SHA1_FILE="sboms/$artifactId-$version-cyclonedx.json.sha1"
+            SIG_URL="https://repo1.maven.org/maven2/$groupPath/$artifactId/$version/$artifactId-$version-cyclonedx.json.asc"
+            SIG_FILE="sboms/$artifactId-$version-cyclonedx.json.asc"
+            SBOM_FILE=""
+            DOWNLOAD_SUCCESS=false
+
+            for i in {1..3}; do
+              if curl -s -f -o "$JSON_SBOM_FILE" "$JSON_SBOM_URL"; then
+                echo "Downloaded JSON SBOM for $artifactId:$version"
+                SBOM_FILE="$JSON_SBOM_FILE"
+                DOWNLOAD_SUCCESS=true
+                break
+              fi
+              sleep 1
+            done
+
+            if [ "$DOWNLOAD_SUCCESS" = true ]; then
+              # Attempt to download the SHA-1 hash file
+              if curl -s -f -o "$SHA1_FILE" "$SHA1_URL"; then
+                echo "Downloaded SHA1 file for $artifactId:$version"
+
+                # Read expected SHA-1 hash
+                EXPECTED_HASH=$(cat "$SHA1_FILE" | tr -d '[:space:]')
+                # Compute actual SHA-1 hash
+                ACTUAL_HASH=$(sha1sum "$JSON_SBOM_FILE" | awk '{print $1}')
+
+                if [ "$EXPECTED_HASH" = "$ACTUAL_HASH" ]; then
+                  echo "✅ SHA1 hash verification passed for $artifactId:$version"
+                else
+                  echo "SHA1 hash mismatch for $artifactId:$version"
+                  echo "Expected: $EXPECTED_HASH"
+                  echo "Actual:   $ACTUAL_HASH"
+                  continue
+                fi
+              else
+                echo "No SHA1 file found for $artifactId:$version. Skipping hash verification."
+              fi
+
+              # Attempt to download and verify signature
+              if curl -s -f -o "$SIG_FILE" "$SIG_URL"; then
+                echo "Downloaded signature for $artifactId:$version"
+
+                # Extract key ID from the GPG verification output
+                # This uses --dry-run to avoid importing keys or writing changes
+                KEY_ID=$(gpg --dry-run --verify "$SIG_FILE" "$JSON_SBOM_FILE" 2>&1 | grep 'using [A-Z]* key' | awk '{print $NF}' | tail -n1)
+
+                if [ -n "$KEY_ID" ]; then
+                  echo "Importing public key $KEY_ID from keyserver..."
+
+                  # Check if the public key is already present
+                  if ! gpg --list-keys "$KEY_ID" > /dev/null 2>&1; then
+                    # If not present, fetch it from the Ubuntu keyserver
+                    gpg --keyserver keyserver.ubuntu.com --recv-keys "$KEY_ID" || {
+                      echo "Failed to import public key $KEY_ID"
+                      continue
+                    }
+                  else
+                    echo "Public key $KEY_ID already present"
+                  fi
+                else
+                  echo "Could not determine key ID from signature"
+                  continue
+                fi
+
+                # Perform the actual GPG signature verification
+                if gpg --verify "$SIG_FILE" "$JSON_SBOM_FILE"; then
+                  echo "✅ Signature verification passed for $artifactId:$version"
+                else
+                  echo "Signature verification failed for $artifactId:$version"
+                  continue
+                fi
+              else
+                # Skip the upload if no signature was found
+                echo "No signature found for $artifactId:$version. Skipping upload."
+                continue
+              fi
+
+              echo "Uploading SBOM for $artifactId:$version"
+              echo "SBOM_FILE=$SBOM_FILE" >> $GITHUB_ENV
+              echo "VERSION=$version" >> $GITHUB_ENV
+              echo "UPLOAD=true" >> $GITHUB_ENV
+
+              # Run the upload step inline
+              echo "Uploading to Dependency-Track server..."
+              /usr/bin/env bash -c "\
+                curl -X POST \
+                -H 'Content-Type: multipart/form-data' \
+                -H 'X-API-Key: ${{ secrets.DEPENDENCYTRACK_API_KEY }}' \
+                -F 'autoCreate=true' \
+                -F 'projectName=${{ matrix.project.name }}' \
+                -F 'projectVersion=$version' \
+                -F 'bom=@$SBOM_FILE' \
+                $DEPENDENCYTRACK_API_URL"
+              echo "Finished uploading SBOM for $artifactId:$version"
+            else
+              echo "No SBOM found for $artifactId:$version"
+            fi
+          done
